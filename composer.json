@@ -1,0 +1,12 @@
+{
+    "name": "omarrida/scribe",
+    "description": "Automated API docs for Laravel",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Omar Rida",
+            "email": "omarrida94@gmail.com"
+        }
+    ],
+    "require": {}
+}
