@@ -101,7 +101,6 @@ class MarkdownFormatter
     private function appendSeparator(): MarkdownFormatter
     {
         $this->markdown .= "\n";
-        $this->markdown .= "\n";
         $this->markdown .= '---';
         $this->markdown .= "\n";
 
