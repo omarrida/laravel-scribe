@@ -4,6 +4,7 @@
 namespace Omarrida\Scribe;
 
 
+use Zttp\Zttp;
 use ReflectionClass;
 use ReflectionException;
 use Illuminate\Routing\Route;
