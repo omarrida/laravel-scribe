@@ -110,7 +110,7 @@ class MarkdownFormatter
     private function appendSuccessResponse(DocumentedRoute $route): MarkdownFormatter
     {
         $this->markdown .= "\n";
-        $this->markdown .= "success response:";
+        $this->markdown .= '**Success Response:**';
         $this->markdown .= "\n";
         $this->markdown .= "\n";
         $this->markdown .= '```';
