@@ -63,4 +63,6 @@ Here's some sample docs I generated from a real existing Laravel 6 project I'm w
 
 **HTTP Method:** `GET|HEAD`
 
+**Validation Rules:** n/a
+
 ---
