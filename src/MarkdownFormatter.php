@@ -25,6 +25,7 @@ class MarkdownFormatter
                 ->appendUri($route)
                 ->appendMethod($route)
                 ->appendRules($route)
+                ->appendSuccessResponse($route)
                 ->appendSeparator();
         });
 
@@ -102,6 +103,21 @@ class MarkdownFormatter
         $this->markdown .= "\n";
         $this->markdown .= '---';
         $this->markdown .= "\n";
+
+        return $this;
+    }
+
+    private function appendSuccessResponse(DocumentedRoute $route): MarkdownFormatter
+    {
+        $this->markdown .= "\n";
+        $this->markdown .= "success response:";
+        $this->markdown .= "\n";
+        $this->markdown .= "\n";
+        $this->markdown .= '```';
+        $this->markdown .= "\n";
+        $this->markdown .= $route->successResponse();
+        $this->markdown .= "\n";
+        $this->markdown .= '```';
 
         return $this;
     }

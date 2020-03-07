@@ -65,7 +65,8 @@ class GenerateDocsCommand extends Command
             'uri'    => $route->uri(),
             'action' => ltrim($route->getActionName(), '\\'),
             'middleware' => $this->getMiddleware($route),
-            'rules' => $rules
+            'rules' => $rules,
+            'success_response' => $this->getSuccessResponse($uri, $rules),
         ];
     }
 
@@ -90,5 +91,24 @@ class GenerateDocsCommand extends Command
         // Rejecting routes results in a non-sequentially keyed array
         // so we re-key it before returning the function output.
         return array_values($routes);
+    }
+
+    private function getSuccessResponse($uri, $rules)
+    {
+        $body = $this->guessValidParams($rules);
+
+        return Zttp::withHeaders(['Accept' => 'application/json'])->post(config('app.url') . '/' . $uri, $body)->json();
+    }
+
+    private function guessValidParams($rules): array
+    {
+        return collect($rules)->map(function ($rules, $field) {
+            $this->guessValidParamForRule($rules, $field);
+        })->toArray();
+    }
+
+    private function guessValidParamForRule($rules, $field)
+    {
+        return 'Omar';
     }
 }

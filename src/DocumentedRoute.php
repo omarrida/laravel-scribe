@@ -10,11 +10,14 @@ class DocumentedRoute
 
     protected array $rules;
 
+    protected array $successResponse;
+
     public function __construct(array $route)
     {
         $this->method = $route['method'];
         $this->uri = $route['uri'];
         $this->rules = $route['rules'];
+        $this->successResponse = $route['success_response'];
     }
 
     public function method(): string
@@ -30,5 +33,10 @@ class DocumentedRoute
     public function rules(): array
     {
         return $this->rules;
+    }
+
+    public function successResponse(): string
+    {
+        return json_encode($this->successResponse, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT, 512);
     }
 }
