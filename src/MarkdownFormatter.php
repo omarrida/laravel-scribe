@@ -34,7 +34,7 @@ class MarkdownFormatter
     private function appendHeading(DocumentedRoute $route): self
     {
         $this->markdown .= "\n";
-        $this->markdown .= "### `{$route->uri()}`";
+        $this->markdown .= "## `{$route->uri()}`";
 
         return $this;
     }
@@ -42,7 +42,7 @@ class MarkdownFormatter
     private function appendUri(DocumentedRoute $route): self
     {
         $this->markdown .= "\n";
-        $this->markdown .= "uri: {$route->uri()}";
+        $this->markdown .= "**URI:** {$route->uri()}";
 
         return $this;
     }
@@ -56,6 +56,7 @@ class MarkdownFormatter
         }
 
         $this->markdown .= "\n";
+        $this->markdown .= "**Validation Rules:**";
         $this->markdown .= "\n";
         $this->markdown .= "| Param | Rules |
 | ---- | ---- |
@@ -84,7 +85,7 @@ class MarkdownFormatter
     {
         $this->markdown .= "\n";
         $this->markdown .= "\n";
-        $this->markdown .= "method: {$route->method()}";
+        $this->markdown .= "**HTTP Method:** {$route->method()}";
 
         return $this;
     }
