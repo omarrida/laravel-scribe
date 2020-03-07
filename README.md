@@ -25,6 +25,8 @@ Right now the `MarkdownFormatter` is really simple. For each route, it shows:
 ## Sample Docs
 Here's some sample docs I generated from a real existing Laravel 6 project I'm working on. They're not pretty, but they're updated automagically!
 
+> Update: We now blindly call POST on all routes to get any response at all. Brilliant!
+
 ## `api/auth/register`
 **URI:** `api/auth/register`
 
@@ -37,8 +39,34 @@ Here's some sample docs I generated from a real existing Laravel 6 project I'm w
 |first_name|required,string|
 |last_name|required,string|
 |email|required,email:rfc,dns,unique:users,email,max:64|
-|password|required,string,max:64|
+|password|required,string,regex:/^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/,max:64|
+|country|required,string_short,exists:country,name|
+|account_type|nullable,string_short,in:individual,entity|
 
+success response:
+
+```
+{
+    "message": "The given data was invalid.",
+    "errors": {
+        "first_name": [
+            "The first name field is required."
+        ],
+        "last_name": [
+            "The last name field is required."
+        ],
+        "email": [
+            "The email field is required."
+        ],
+        "password": [
+            "The password field is required."
+        ],
+        "country": [
+            "The country field is required."
+        ]
+    }
+}
+```
 ---
 
 ## `api/auth/login`
@@ -53,15 +81,37 @@ Here's some sample docs I generated from a real existing Laravel 6 project I'm w
 |email|required,string,email:rfc,dns|
 |password|required,string|
 
+success response:
+
+```
+{
+    "message": "The given data was invalid.",
+    "errors": {
+        "email": [
+            "The email field is required."
+        ],
+        "password": [
+            "The password field is required."
+        ]
+    }
+}
+```
 ---
 
-## `api/auth/me`
-**URI:** `api/auth/me`
+## `api/auth/logout`
+**URI:** `api/auth/logout`
 
-**HTTP Method:** `GET|HEAD`
+**HTTP Method:** `POST`
 
 **Validation Rules:** n/a
 
+success response:
+
+```
+{
+    "message": "You have successfully logged out."
+}
+```
 ---
 
 ## Limitations
