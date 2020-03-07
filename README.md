@@ -1,3 +1,3 @@
 # Scribe for Laravel
 
-Spend less time worrying about API docs and more time writing great code.
+Spend less time worrying about maintaining docs and more time writing great code.
