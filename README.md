@@ -44,6 +44,8 @@ Here's some sample docs I generated from a real existing Laravel 6 project I'm w
 |email|required,email:rfc,dns,unique:users,email,max:64|
 |password|required,string,max:64|
 
+---
+
 ## `api/auth/login`
 **URI:** `api/auth/login`
 
