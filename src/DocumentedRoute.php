@@ -10,7 +10,7 @@ class DocumentedRoute
 
     protected array $rules;
 
-    protected array $successResponse;
+    protected $successResponse;
 
     public function __construct(array $route)
     {
