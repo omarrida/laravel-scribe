@@ -56,7 +56,6 @@ class MarkdownFormatter
             $this->markdown .= "\n";
             $this->markdown .= "**Validation Rules:** n/a";
             $this->markdown .= "\n";
-            $this->markdown .= "\n";
 
             return $this;
         }
