@@ -1,4 +1,4 @@
-![Scribe Banner](/scribe-banner-under-dev.png)
+![Scribe Banner](/scribe-banner-under-dev@2x.png)
 # Laravel Scribe
 Spend less time worrying about maintaining docs and more time writing great code.
 
