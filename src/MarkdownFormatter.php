@@ -21,7 +21,11 @@ class MarkdownFormatter
         $routesToFormat = $this->apiDocs->routes();
 
         array_walk($routesToFormat, function (DocumentedRoute $route) {
-            $this->appendHeading($route)->appendUri($route)->appendMethod($route)->appendRules($route);
+            $this->appendHeading($route)
+                ->appendUri($route)
+                ->appendMethod($route)
+                ->appendRules($route)
+                ->appendSeparator();
         });
 
         return $this->markdown;
@@ -83,5 +87,11 @@ class MarkdownFormatter
         $this->markdown .= "method: {$route->method()}";
 
         return $this;
+    }
+
+    private function appendSeparator()
+    {
+        $this->markdown .= '---';
+        $this->markdown .= "\n";
     }
 }
