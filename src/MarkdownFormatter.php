@@ -89,10 +89,12 @@ class MarkdownFormatter
         return $this;
     }
 
-    private function appendSeparator()
+    private function appendSeparator(): MarkdownFormatter
     {
         $this->markdown .= "\n";
         $this->markdown .= '---';
         $this->markdown .= "\n";
+
+        return $this;
     }
 }
