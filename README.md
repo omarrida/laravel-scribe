@@ -20,7 +20,7 @@ Right now the `MarkdownFormatter` is really simple. For each route, it shows:
 - HTTP Method
 - Validation rules from `FormRequest`
 
-> Scribe tries to find the validation rules by reflecting on the controller method associated with the route and looking for a custom `FormRequest` in the typehint. If it finds one, it will call the `rules()` method on it and parse the returnn array of validation rules.
+> Scribe tries to find the validation rules by reflecting on the controller method associated with the route and looking for a custom `FormRequest` in the typehint. If it finds one, it will call the `rules()` method on it and parse the return array of validation rules.
 
 ## Limitations
 Scribe doesn't know how to generate sample responses yet. One day soon...

@@ -45,13 +45,17 @@ class MarkdownFormatter
 
     private function appendRules(DocumentedRoute $route): self
     {
+        $routeParams = $route->rules();
+
+        if (0 === count($routeParams)) {
+            return $this;
+        }
+
         $this->markdown .= "\n";
         $this->markdown .= "\n";
         $this->markdown .= "| Param | Rules |
 | ---- | ---- |
 ";
-
-        $routeParams = $route->rules();
 
         foreach ($routeParams as $param => $validationRules) {
 
