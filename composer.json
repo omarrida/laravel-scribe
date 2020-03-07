@@ -1,12 +1,55 @@
 {
     "name": "omarrida/scribe",
-    "description": "Automated API docs for Laravel",
-    "type": "library",
+    "description": "Spend less time worrying about maintaining docs and more time writing great code.",
+    "keywords": [
+        "scribe",
+        "laravel",
+        "api",
+        "docs",
+        "generator"
+    ],
+    "license": "MIT",
     "authors": [
         {
             "name": "Omar Rida",
             "email": "omarrida94@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "php": "^7.4",
+        "illuminate/console": "^6.0|^7.0",
+        "illuminate/support": "^6.0|^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.4|^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Omarrida\\Scribe\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Omarrida\\Scribe\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Spatie\\EventSourcing\\EventSourcingServiceProvider"
+            ],
+            "aliases": {
+                "Projectionist": "Spatie\\EventSourcing\\Facades\\EventSourcing"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
