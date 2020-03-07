@@ -13,3 +13,64 @@ Run  the `scribe:generate` command to generate API docs. You should see a `scrib
 ```
 php artisan scribe:generate
 ```
+
+## Usage
+Right now the `MarkdownFormatter` is really simple. For each route, it shows:
+- URI
+- HTTP Method
+- Validation rules from `FormRequest`
+
+> Scribe tries to find the validation rules by reflecting on the controller method associated with the route and looking for a custom `FormRequest` in the typehint. If it finds one, it will call the `rules()` method on it and parse the returnn array of validation rules.
+
+## Limitations
+Scribe doesn't know how to generate sample responses yet. One day soon...
+
+Avoid putting any kind of authentication logic within the `rules()` method of your custom `FormRequest`. Scribe uses reflection to access the information and will not have an authed user when it calls  the `rules()` method. This is a common cause of fatal errors when running `scribe:generate`.
+
+## Sample Docs
+Here's some sample docs I generated from a real existing Laravel 6 project I'm working on. They're not pretty, but they're updated automagically!
+
+### `api/auth/register`
+uri: api/auth/register
+
+method: POST
+
+| Param | Rules |
+| ---- | ---- |
+|first_name|required,string|
+|last_name|required,string|
+|email|required,email:rfc,dns,unique:users,email,max:64|
+|password|required,string,max:64|
+
+### `api/auth/login`
+uri: api/auth/login
+
+method: POST
+
+| Param | Rules |
+| ---- | ---- |
+|email|required,string,email:rfc,dns|
+|password|required,string|
+
+### `api/auth/me`
+uri: api/auth/me
+
+method: GET|HEAD
+
+| Param | Rules |
+| ---- | ---- |
+
+### `api/contacts/{contact}/addresses`
+uri: api/contacts/{contact}/addresses
+
+method: POST
+
+| Param | Rules |
+| ---- | ---- |
+|street_1|string_short,required|
+|street_2|string_short,nullable|
+|city|string_short,required|
+|region|string_short,required|
+|postal_code|string_short,required|
+|country_id|int,required,exists:country,id|
+
