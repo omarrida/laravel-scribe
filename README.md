@@ -22,11 +22,6 @@ Right now the `MarkdownFormatter` is really simple. For each route, it shows:
 
 > Scribe tries to find the validation rules by reflecting on the controller method associated with the route and looking for a custom `FormRequest` in the typehint. If it finds one, it will call the `rules()` method on it and parse the return array of validation rules.
 
-## Limitations
-Scribe doesn't know how to generate sample responses yet. One day soon...
-
-Avoid putting any kind of authentication logic within the `rules()` method of your custom `FormRequest`. Scribe uses reflection to access the information and will not have an authed user when it calls  the `rules()` method. This is a common cause of fatal errors when running `scribe:generate`.
-
 ## Sample Docs
 Here's some sample docs I generated from a real existing Laravel 6 project I'm working on. They're not pretty, but they're updated automagically!
 
@@ -68,3 +63,8 @@ Here's some sample docs I generated from a real existing Laravel 6 project I'm w
 **Validation Rules:** n/a
 
 ---
+
+## Limitations
+Scribe doesn't know how to generate sample responses yet. One day soon...
+
+Avoid putting any kind of authentication logic within the `rules()` method of your custom `FormRequest`. Scribe uses reflection to access the information and will not have an authed user when it calls  the `rules()` method. This is a common cause of fatal errors when running `scribe:generate`.
