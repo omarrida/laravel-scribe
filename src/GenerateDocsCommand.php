@@ -39,12 +39,6 @@ class GenerateDocsCommand extends Command
         $this->info('Docs updated successfully.');
     }
 
-    /**
-     * Get the route information for a given route.
-     *
-     * @param Route $route
-     * @return array
-     */
     protected function getRouteInformation(Route $route)
     {
         $formRequestTypeHint = $route->signatureParameters();
@@ -75,12 +69,6 @@ class GenerateDocsCommand extends Command
         ];
     }
 
-    /**
-     * Get before filters.
-     *
-     * @param  Route  $route
-     * @return string
-     */
     protected function getMiddleware($route): string
     {
         return collect($route->gatherMiddleware())->map(function ($middleware) {
@@ -88,9 +76,6 @@ class GenerateDocsCommand extends Command
         })->implode(',');
     }
 
-    /**
-     * @return array
-     */
     protected function getApiRoutes(): array
     {
         $routes = collect($this->router->getRoutes())
