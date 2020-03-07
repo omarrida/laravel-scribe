@@ -1,3 +1,4 @@
+![Scribe Banner](/scribe-banner.png)
 # Laravel Scribe
 Spend less time worrying about maintaining docs and more time writing great code.
 
