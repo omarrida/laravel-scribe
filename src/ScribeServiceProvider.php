@@ -16,5 +16,9 @@ class ScribeServiceProvider extends ServiceProvider
     private function bindCommand(): void
     {
         $this->app->bind('command.scribe:generate', GenerateDocsCommand::class);
+
+        $this->commands([
+            'command.scribe:generate'
+        ]);
     }
 }
