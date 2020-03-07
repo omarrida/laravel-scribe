@@ -30,10 +30,12 @@ Avoid putting any kind of authentication logic within the `rules()` method of yo
 ## Sample Docs
 Here's some sample docs I generated from a real existing Laravel 6 project I'm working on. They're not pretty, but they're updated automagically!
 
-### `api/auth/register`
-uri: api/auth/register
+## `api/auth/register`
+**URI:** `api/auth/register`
 
-method: POST
+**HTTP Method:** `POST`
+
+**Validation Rules:**
 
 | Param | Rules |
 | ---- | ---- |
@@ -42,32 +44,23 @@ method: POST
 |email|required,email:rfc,dns,unique:users,email,max:64|
 |password|required,string,max:64|
 
-### `api/auth/login`
-uri: api/auth/login
+## `api/auth/login`
+**URI:** `api/auth/login`
 
-method: POST
+**HTTP Method:** `POST`
+
+**Validation Rules:**
 
 | Param | Rules |
 | ---- | ---- |
 |email|required,string,email:rfc,dns|
 |password|required,string|
 
-### `api/auth/me`
-uri: api/auth/me
+---
 
-method: GET|HEAD
+## `api/auth/me`
+**URI:** `api/auth/me`
 
-### `api/contacts/{contact}/addresses`
-uri: api/contacts/{contact}/addresses
+**HTTP Method:** `GET|HEAD`
 
-method: POST
-
-| Param | Rules |
-| ---- | ---- |
-|street_1|string_short,required|
-|street_2|string_short,nullable|
-|city|string_short,required|
-|region|string_short,required|
-|postal_code|string_short,required|
-|country_id|int,required,exists:country,id|
-
+---

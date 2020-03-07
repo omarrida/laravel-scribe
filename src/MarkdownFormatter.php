@@ -52,12 +52,19 @@ class MarkdownFormatter
         $routeParams = $route->rules();
 
         if (0 === count($routeParams)) {
+            $this->markdown .= "\n";
+            $this->markdown .= "\n";
+            $this->markdown .= "**Validation Rules:** n/a";
+            $this->markdown .= "\n";
+            $this->markdown .= "\n";
+
             return $this;
         }
 
         $this->markdown .= "\n";
         $this->markdown .= "\n";
         $this->markdown .= "**Validation Rules:**";
+        $this->markdown .= "\n";
         $this->markdown .= "\n";
         $this->markdown .= "| Param | Rules |
 | ---- | ---- |
