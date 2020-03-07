@@ -40,10 +40,8 @@ Here's some sample docs I generated from a real existing Laravel 6 project I'm w
 |last_name|required,string|
 |email|required,email:rfc,dns,unique:users,email,max:64|
 |password|required,string,regex:/^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/,max:64|
-|country|required,string_short,exists:country,name|
-|account_type|nullable,string_short,in:individual,entity|
 
-success response:
+**Success Response:**
 
 ```
 {
@@ -81,7 +79,7 @@ success response:
 |email|required,string,email:rfc,dns|
 |password|required,string|
 
-success response:
+**Success Response:**
 
 ```
 {
@@ -105,7 +103,7 @@ success response:
 
 **Validation Rules:** n/a
 
-success response:
+**Success Response:**
 
 ```
 {
