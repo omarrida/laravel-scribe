@@ -57,9 +57,6 @@ uri: api/auth/me
 
 method: GET|HEAD
 
-| Param | Rules |
-| ---- | ---- |
-
 ### `api/contacts/{contact}/addresses`
 uri: api/contacts/{contact}/addresses
 
