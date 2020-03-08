@@ -27,8 +27,11 @@ class ParamGuesser
     private function tryFaker($field)
     {
         try {
-            $formatter = Str::of($field)->camel();
-            return $this->faker->$formatter;
+            $str = str_replace('_', '', ucwords($field, ''));
+
+            $str = lcfirst($str);
+
+            return $this->faker->$str;
         } catch (InvalidArgumentException $exception) {
             //
         }

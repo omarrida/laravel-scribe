@@ -83,8 +83,8 @@ class GenerateDocsCommand extends Command
     {
         $routes = collect($this->router->getRoutes())
             ->reject(function ($route) {
-                return !Str::contains($this->getMiddleware($route), 'api')
-                    || Str::contains($route->getName(), 'nova');
+                return !str_contains($this->getMiddleware($route), 'api')
+                    || str_contains($route->getName(), 'nova');
             })
             ->map(function ($route) {
                 return $this->getRouteInformation($route);
