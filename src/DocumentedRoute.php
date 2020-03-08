@@ -35,7 +35,7 @@ class DocumentedRoute
         return $this->rules;
     }
 
-    public function successResponse(): string
+    public function successResponse(): ?string
     {
         if (null === $this->successResponse) {
             return null;

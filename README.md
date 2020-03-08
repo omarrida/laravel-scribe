@@ -34,7 +34,8 @@ Right now the `MarkdownFormatter` is really simple. For each route, it shows:
 - URI
 - HTTP Method
 - Validation rules from `FormRequest`
-- WIP on sample responses!
+- Some sample responses for unauthed GET and POST requests.
+- Few sample responses for authed GET and POST requests.
 
 > Scribe tries to find the validation rules by reflecting on the controller method associated with the route and looking for a custom `FormRequest` in the typehint. If it finds one, it will call the `rules()` method on it and parse the return array of validation rules.
 
@@ -85,8 +86,8 @@ Here's some sample docs I generated from a real existing Laravel 6 project I'm w
 ---
 
 ## Limitations
-You MUST be using JWTAuth as your auth provider for Scribe to work. 
+You MUST be using JWTAuth and have your user model located at `\App\Auth\User`  for Scribe to get responses for authed routes.
 
-Scribe is still learning how to guess success responses.
+Scribe is still learning how to guess success responses. It can do basic GET and POST and authed GET and POST with a basic user.
 
 Avoid putting any kind of authentication logic within the `rules()` method of your custom `FormRequest`. Scribe uses reflection to access the information and will not have an authed user when it calls  the `rules()` method. This is a common cause of fatal errors when running `scribe:generate`.
