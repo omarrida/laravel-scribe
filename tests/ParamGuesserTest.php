@@ -48,7 +48,7 @@ class ParamGuesserTest extends TestCase
     /** @test */
     public function it_handles_the_in_rule(): void
     {
-        $rules = 'in:personal,business';
+        $rules = 'nullable,string_short,in:personal,business';
         $field = 'account_type';
 
         $guess = $this->guesser->pass($rules, $field);

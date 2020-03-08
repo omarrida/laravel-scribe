@@ -47,6 +47,6 @@ class ParamGuesser
 
     private function wantsEnum($parsedRule)
     {
-        return $parsedRule[0] === 'In';
+        return str_contains(strtolower($parsedRule[0]), 'in');
     }
 }
