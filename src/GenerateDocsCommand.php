@@ -98,7 +98,10 @@ class GenerateDocsCommand extends Command
     {
         $body = $this->guessValidParams($rules);
 
-        return Zttp::withHeaders(['Accept' => 'application/json'])->post(config('app.url') . '/' . $uri, $body)->json();
+        return Zttp::withOptions(['verify' => false])
+            ->withHeaders(['Accept' => 'application/json'])
+            ->post(config('app.url') . '/' . $uri, $body)
+            ->json();
     }
 
     private function guessValidParams($rules): array
