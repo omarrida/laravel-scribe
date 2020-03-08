@@ -18,7 +18,7 @@ class ResponseMaker
             ->json();
     }
 
-    private function guessValidParams($rules): array
+    private static function guessValidParams($rules): array
     {
         return collect($rules)->map(function ($rules, $field) {
             return (new ParamGuesser())->pass($rules, $field);
