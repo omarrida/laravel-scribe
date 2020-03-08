@@ -11,7 +11,7 @@ class AuthedGetStrategy
 {
     public static function attempt($route)
     {
-        $token = JWTAuth::fromUser(factory(User::class)->create());
+        $token = JWTAuth::fromUser(factory(\App\Auth\User::class)->create());
 
         return Zttp::withOptions(['verify' => false])
             ->withHeaders([
