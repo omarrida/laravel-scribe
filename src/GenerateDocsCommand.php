@@ -108,7 +108,7 @@ class GenerateDocsCommand extends Command
     private function guessValidParams($rules): array
     {
         return collect($rules)->map(function ($rules, $field) {
-            $this->guessValidParamForRule($rules, $field);
+            return $this->guessValidParamForRule($rules, $field);
         })->toArray();
     }
 
