@@ -3,13 +3,24 @@
 Spend less time worrying about maintaining docs and more time writing great code.
 
 ## Getting Started
-Install the package as a dev dependency to your project.
+Install the package as a dev dependency to your project. Since the package isn't in any public registry, add this repository to your `composer.json`.
+
+```
+"repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/omarrida/laravel-scribe"
+        },
+    ]
+```
+
+Now you ca require it as a dev dependency. You should get the `dev-master` versionn.
 
 ```
 composer require --dev omarrida/laravel-scribe
 ```
 
-Run  the `scribe:generate` command to generate API docs. You should see a `scribe.md` file appear in your project's root directory.
+Run  the `scribe:generate` command to generate API docs. A `scribe.md` file should appear in your project's root directory. If not, enjoy the errors!
 
 ```
 php artisan scribe:generate
