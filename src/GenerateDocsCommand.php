@@ -7,6 +7,7 @@ namespace Omarrida\Scribe;
 use Zttp\Zttp;
 use ReflectionClass;
 use ReflectionException;
+use Illuminate\Support\Str;
 use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
 use Illuminate\Console\Command;
@@ -71,7 +72,7 @@ class GenerateDocsCommand extends Command
         ];
     }
 
-    protected function getMiddleware($route): string
+    protected function getMiddleware(Route $route): string
     {
         return collect($route->gatherMiddleware())->map(function ($middleware) {
             return $middleware instanceof Closure ? 'Closure' : $middleware;
@@ -82,8 +83,8 @@ class GenerateDocsCommand extends Command
     {
         $routes = collect($this->router->getRoutes())
             ->reject(function ($route) {
-                return !str_contains($this->getMiddleware($route), 'api')
-                    || str_contains($route->getName(), 'nova');
+                return !Str::contains($this->getMiddleware($route), 'api')
+                    || Str::contains($route->getName(), 'nova');
             })
             ->map(function ($route) {
                 return $this->getRouteInformation($route);
@@ -113,6 +114,6 @@ class GenerateDocsCommand extends Command
 
     private function guessValidParamForRule($rules, $field)
     {
-        return 'Omar';
+        return (new ParamGuesser())->pass($rules, $field);
     }
 }
