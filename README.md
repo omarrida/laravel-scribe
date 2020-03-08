@@ -3,6 +3,7 @@
 Spend less time worrying about maintaining docs and more time writing great code.
 
 ## Getting Started
+
 Install the package as a dev dependency to your project. Since the package isn't in any public registry, add this repository to your `composer.json`.
 
 ```json
@@ -84,6 +85,8 @@ Here's some sample docs I generated from a real existing Laravel 6 project I'm w
 ---
 
 ## Limitations
-Scribe will only get successful responses for some basic `POST` requests. The rest will return  failed JSON, but at least it's pretty-printed.
+You MUST be using JWTAuth as your auth provider for Scribe to work. 
+
+Scribe is still learning how to guess success responses.
 
 Avoid putting any kind of authentication logic within the `rules()` method of your custom `FormRequest`. Scribe uses reflection to access the information and will not have an authed user when it calls  the `rules()` method. This is a common cause of fatal errors when running `scribe:generate`.
