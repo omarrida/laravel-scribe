@@ -1,3 +1,4 @@
+![Scribe Banner](/scribe-banner-under-dev@2x.png)
 # Laravel Scribe
 Spend less time worrying about maintaining docs and more time writing great code.
 
@@ -19,6 +20,7 @@ Right now the `MarkdownFormatter` is really simple. For each route, it shows:
 - URI
 - HTTP Method
 - Validation rules from `FormRequest`
+- WIP on sample responses!
 
 > Scribe tries to find the validation rules by reflecting on the controller method associated with the route and looking for a custom `FormRequest` in the typehint. If it finds one, it will call the `rules()` method on it and parse the return array of validation rules.
 
@@ -40,10 +42,8 @@ Here's some sample docs I generated from a real existing Laravel 6 project I'm w
 |last_name|required,string|
 |email|required,email:rfc,dns,unique:users,email,max:64|
 |password|required,string,regex:/^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/,max:64|
-|country|required,string_short,exists:country,name|
-|account_type|nullable,string_short,in:individual,entity|
 
-success response:
+**Success Response:**
 
 ```
 {
@@ -81,7 +81,7 @@ success response:
 |email|required,string,email:rfc,dns|
 |password|required,string|
 
-success response:
+**Success Response:**
 
 ```
 {
@@ -105,7 +105,7 @@ success response:
 
 **Validation Rules:** n/a
 
-success response:
+**Success Response:**
 
 ```
 {
