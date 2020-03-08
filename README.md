@@ -55,58 +55,14 @@ Here's some sample docs I generated from a real existing Laravel 6 project I'm w
 |last_name|required,string|
 |email|required,email:rfc,dns,unique:users,email,max:64|
 |password|required,string,regex:/^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/,max:64|
+|country|required,string,exists:country,name|
+|account_type|nullable,string,in:personal,business|
 
 **Success Response:**
 
-```json
-{
-    "message": "The given data was invalid.",
-    "errors": {
-        "first_name": [
-            "The first name field is required."
-        ],
-        "last_name": [
-            "The last name field is required."
-        ],
-        "email": [
-            "The email field is required."
-        ],
-        "password": [
-            "The password field is required."
-        ],
-        "country": [
-            "The country field is required."
-        ]
-    }
-}
 ```
----
-
-## `api/auth/login`
-**URI:** `api/auth/login`
-
-**HTTP Method:** `POST`
-
-**Validation Rules:**
-
-| Param | Rules |
-| ---- | ---- |
-|email|required,string,email:rfc,dns|
-|password|required,string|
-
-**Success Response:**
-
-```json
 {
-    "message": "The given data was invalid.",
-    "errors": {
-        "email": [
-            "The email field is required."
-        ],
-        "password": [
-            "The password field is required."
-        ]
-    }
+    "message": "Thanks for signing up! Please check your email to complete your registration."
 }
 ```
 ---
@@ -128,6 +84,6 @@ Here's some sample docs I generated from a real existing Laravel 6 project I'm w
 ---
 
 ## Limitations
-Scribe doesn't know how to generate sample responses yet. One day soon...
+Scribe will only get successful responses for some basic `POST` requests. The rest will return  failed JSON, but at least it's pretty-printed.
 
 Avoid putting any kind of authentication logic within the `rules()` method of your custom `FormRequest`. Scribe uses reflection to access the information and will not have an authed user when it calls  the `rules()` method. This is a common cause of fatal errors when running `scribe:generate`.

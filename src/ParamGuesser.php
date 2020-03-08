@@ -5,7 +5,6 @@ namespace Omarrida\Scribe;
 
 
 use Faker\Factory;
-use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Illuminate\Validation\ValidationRuleParser;
 
