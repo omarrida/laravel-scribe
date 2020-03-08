@@ -37,6 +37,10 @@ class DocumentedRoute
 
     public function successResponse(): string
     {
+        if (null === $this->successResponse) {
+            return null;
+        }
+
         return json_encode($this->successResponse, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT, 512);
     }
 }
