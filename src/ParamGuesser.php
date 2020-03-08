@@ -24,7 +24,7 @@ class ParamGuesser
 
         $parsedRule = ValidationRuleParser::parse($rules);
 
-        if ($this->wantsEnum($parsedRule)) {
+        if ($this->wantsEnum($parsedRule) && isset($parsedRule[1][0])) {
             // Get the first permitted enum value from the rule array.
             return $parsedRule[1][0];
         }
