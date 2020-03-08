@@ -4,10 +4,8 @@
 namespace Omarrida\Scribe;
 
 
-use Zttp\Zttp;
 use ReflectionClass;
 use ReflectionException;
-use Illuminate\Support\Str;
 use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
 use Illuminate\Console\Command;
@@ -68,7 +66,7 @@ class GenerateDocsCommand extends Command
             'action' => ltrim($route->getActionName(), '\\'),
             'middleware' => $this->getMiddleware($route),
             'rules' => $rules,
-            'success_response' => $this->getSuccessResponse($uri, $rules),
+            'success_response' => ResponseMaker::success($uri, $rules),
         ];
     }
 
@@ -93,27 +91,5 @@ class GenerateDocsCommand extends Command
         // Rejecting routes results in a non-sequentially keyed array
         // so we re-key it before returning the function output.
         return array_values($routes);
-    }
-
-    private function getSuccessResponse($uri, $rules)
-    {
-        $body = $this->guessValidParams($rules);
-
-        return Zttp::withOptions(['verify' => false])
-            ->withHeaders(['Accept' => 'application/json'])
-            ->post(config('app.url') . '/' . $uri, $body)
-            ->json();
-    }
-
-    private function guessValidParams($rules): array
-    {
-        return collect($rules)->map(function ($rules, $field) {
-            return $this->guessValidParamForRule($rules, $field);
-        })->toArray();
-    }
-
-    private function guessValidParamForRule($rules, $field)
-    {
-        return (new ParamGuesser())->pass($rules, $field);
     }
 }
