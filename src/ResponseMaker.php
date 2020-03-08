@@ -5,16 +5,17 @@ namespace Omarrida\Scribe;
 
 
 use Zttp\Zttp;
+use Illuminate\Routing\Route;
 
 class ResponseMaker
 {
-    public static function success($uri, $rules)
+    public static function success(Route $route, $rules)
     {
         $body = self::guessValidParams($rules);
 
         return Zttp::withOptions(['verify' => false])
             ->withHeaders(['Accept' => 'application/json'])
-            ->post(config('app.url') . '/' . $uri, $body)
+            ->post(config('app.url') . '/' . $route->uri(), $body)
             ->json();
     }
 

@@ -66,7 +66,7 @@ class GenerateDocsCommand extends Command
             'action' => ltrim($route->getActionName(), '\\'),
             'middleware' => $this->getMiddleware($route),
             'rules' => $rules,
-            'success_response' => ResponseMaker::success($uri, $rules),
+            'success_response' => ResponseMaker::success($route, $rules),
         ];
     }
 
