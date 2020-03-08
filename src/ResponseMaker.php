@@ -13,10 +13,21 @@ class ResponseMaker
     {
         $body = self::guessValidParams($rules);
 
-        return Zttp::withOptions(['verify' => false])
-            ->withHeaders(['Accept' => 'application/json'])
-            ->post(config('app.url') . '/' . $route->uri(), $body)
-            ->json();
+        switch (self::getMethod($route)) {
+            case 'GET':
+                return Zttp::withOptions(['verify' => false])
+                    ->withHeaders(['Accept' => 'application/json'])
+                    ->get(config('app.url') . '/' . $route->uri())
+                    ->json();
+            case 'POST':
+                return Zttp::withOptions(['verify' => false])
+                    ->withHeaders(['Accept' => 'application/json'])
+                    ->post(config('app.url') . '/' . $route->uri(), $body)
+                    ->json();
+            default:
+                $response = null;
+                break;
+        }
     }
 
     private static function guessValidParams($rules): array
@@ -24,5 +35,10 @@ class ResponseMaker
         return collect($rules)->map(function ($rules, $field) {
             return (new ParamGuesser())->pass($rules, $field);
         })->toArray();
+    }
+
+    private static function getMethod(Route $route)
+    {
+        return array_diff($route->methods(), ['HEAD'])[0];
     }
 }

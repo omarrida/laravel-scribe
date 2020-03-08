@@ -115,7 +115,7 @@ class MarkdownFormatter
         $this->markdown .= "\n";
         $this->markdown .= '```';
         $this->markdown .= "\n";
-        $this->markdown .= $route->successResponse();
+        $this->markdown .= $route->successResponse() ?? 'Could not auto-generate response.';
         $this->markdown .= "\n";
         $this->markdown .= '```';
 
