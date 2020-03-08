@@ -1,12 +1,11 @@
 <?php
 
 
-namespace Omarrida\Scribe;
-
+namespace Omarrida\Scribe\Strategies;
 
 use Zttp\Zttp;
 
-class BasicGetStrategy
+class BasicGetStrategy implements GetStrategy
 {
     public static function attempt($route)
     {

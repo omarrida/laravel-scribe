@@ -6,8 +6,10 @@ namespace Omarrida\Scribe;
 
 use App\Auth\User;
 use Illuminate\Routing\Route;
-use Tymon\JWTAuth\Facades\JWTAuth;
-use Zttp\Zttp;
+use Omarrida\Scribe\Strategies\BasicGetStrategy;
+use Omarrida\Scribe\Strategies\AuthedGetStrategy;
+use Omarrida\Scribe\Strategies\BasicPostStrategy;
+use Omarrida\Scribe\Strategies\AuthedPostStrategy;
 
 class ResponseMaker
 {

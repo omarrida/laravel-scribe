@@ -1,13 +1,12 @@
 <?php
 
 
-namespace Omarrida\Scribe;
-
+namespace Omarrida\Scribe\Strategies;
 
 use Zttp\Zttp;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-class AuthedPostStrategy
+class AuthedPostStrategy implements PostStrategy
 {
     public static function attempt($route, $body)
     {

@@ -1,13 +1,13 @@
 <?php
 
 
-namespace Omarrida\Scribe;
+namespace Omarrida\Scribe\Strategies;
 
 
 use Zttp\Zttp;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-class AuthedGetStrategy
+class AuthedGetStrategy implements GetStrategy
 {
     public static function attempt($route)
     {
