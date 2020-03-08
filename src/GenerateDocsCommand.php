@@ -61,7 +61,7 @@ class GenerateDocsCommand extends Command
 
         return [
             'domain' => $route->domain(),
-            'method' => implode('|', array_diff($route->methods()), ['HEAD']),
+            'method' => implode('|', array_diff($route->methods(), ['HEAD'])),
             'uri'    => $uri = $route->uri(),
             'action' => ltrim($route->getActionName(), '\\'),
             'middleware' => $this->getMiddleware($route),
