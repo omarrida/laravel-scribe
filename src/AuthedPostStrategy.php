@@ -7,9 +7,9 @@ namespace Omarrida\Scribe;
 use Zttp\Zttp;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-class AuthedGetStrategy
+class AuthedPostStrategy
 {
-    public static function attempt($route)
+    public static function attempt($route, $body)
     {
         $token = JWTAuth::fromUser(factory(\App\Auth\User::class)->create());
 
@@ -18,6 +18,6 @@ class AuthedGetStrategy
                 'Accept' => 'application/json',
                 'Authorization' => 'Bearer ' . $token
             ])
-            ->get(config('app.url') . '/' . $route->uri());
+            ->post(config('app.url') . '/' . $route->uri(), $body);
     }
 }

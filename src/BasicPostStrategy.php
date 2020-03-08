@@ -6,12 +6,12 @@ namespace Omarrida\Scribe;
 
 use Zttp\Zttp;
 
-class BasicGetStrategy
+class BasicPostStrategy
 {
-    public static function attempt($route)
+    public static function attempt($route, $body)
     {
         return Zttp::withOptions(['verify' => false])
             ->withHeaders(['Accept' => 'application/json'])
-            ->get(config('app.url') . '/' . $route->uri());
+            ->post(config('app.url') . '/' . $route->uri(), $body);
     }
 }

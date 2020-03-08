@@ -46,8 +46,10 @@ class ResponseMaker
         $response = null;
 
         collect($strategies)->each(function ($strategy) use ($route, &$response) {
-            if ($success = $strategy::attempt($route)) {
-                $response = $success;
+            $try = $strategy::attempt($route);
+
+            if ($try->isOk()) {
+                $response = $try->json();
             }
         });
 
@@ -56,9 +58,21 @@ class ResponseMaker
 
     private static function tryPostRequest(Route $route, $body)
     {
-        return Zttp::withOptions(['verify' => false])
-            ->withHeaders(['Accept' => 'application/json'])
-            ->post(config('app.url') . '/' . $route->uri(), $body)
-            ->json();
+        $strategies = [
+            BasicPostStrategy::class,
+            AuthedPostStrategy::class
+        ];
+
+        $response = null;
+
+        collect($strategies)->each(function ($strategy) use ($route, $body, &$response) {
+            $try = $strategy::attempt($route, $body);
+
+            if ($try->isOk()) {
+                $response = $try->json();
+            }
+        });
+
+        return $response;
     }
 }
