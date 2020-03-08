@@ -7,6 +7,7 @@ namespace Omarrida\Scribe;
 use Faker\Factory;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
+use Illuminate\Validation\ValidationRuleParser;
 
 class ParamGuesser
 {
@@ -19,6 +20,13 @@ class ParamGuesser
     {
         if ($fakeData = $this->tryFaker($field)) {
             return $fakeData;
+        }
+
+        $parsedRule = ValidationRuleParser::parse($rules);
+
+        if ($this->wantsEnum($parsedRule)) {
+            // Get the first permitted enum value from the rule array.
+            return $parsedRule[1][0];
         }
 
         return 'Omar';
@@ -35,5 +43,10 @@ class ParamGuesser
         } catch (InvalidArgumentException $exception) {
             //
         }
+    }
+
+    private function wantsEnum($parsedRule)
+    {
+        return $parsedRule[0] === 'In';
     }
 }

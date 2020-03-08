@@ -44,4 +44,16 @@ class ParamGuesserTest extends TestCase
         $this->assertTrue($this->rules->validateEmail($field, $guess, ['rfc', 'dns']));
         $this->assertTrue($this->rules->validateRequired($field, $guess));
     }
+
+    /** @test */
+    public function it_handles_the_in_rule(): void
+    {
+        $rules = 'in:personal,business';
+        $field = 'account_type';
+
+        $guess = $this->guesser->pass($rules, $field);
+
+        $this->assertTrue($this->rules->validateIn($field, $guess, ['personal', 'business']));
+        $this->assertTrue($this->rules->validateRequired($field, $guess));
+    }
 }
