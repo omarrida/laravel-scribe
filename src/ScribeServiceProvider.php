@@ -29,7 +29,7 @@ class ScribeServiceProvider extends ServiceProvider
 
     private function registerViews(): void
     {
-        $this->loadViewsFrom(__DIR__.'/Views/');
+        $this->loadViewsFrom(__DIR__.'/Views/', 'scribe');
     }
 
     private function registerRoutes()
