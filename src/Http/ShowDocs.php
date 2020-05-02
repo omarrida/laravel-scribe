@@ -4,10 +4,12 @@
 namespace Omarrida\Scribe\Http;
 
 
+use Omarrida\Scribe\ApiDoc;
+
 class ShowDocs
 {
     public function __invoke()
     {
-        dd('in controller');
+        return ApiDoc::generate(app('router'))->toMarkdown();
     }
 }

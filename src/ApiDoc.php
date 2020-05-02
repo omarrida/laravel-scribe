@@ -4,6 +4,7 @@
 namespace Omarrida\Scribe;
 
 
+use ReflectionClass;
 use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
 
@@ -38,7 +39,7 @@ class ApiDoc
     {
         $routes = collect($router->getRoutes())
             ->reject(function ($route) {
-                return !str_contains($this->getMiddleware($route), 'api')
+                return !str_contains(self::getMiddleware($route), 'api')
                     || str_contains($route->getName(), 'nova');
             })
             ->map(function ($route) {
@@ -59,7 +60,6 @@ class ApiDoc
         if (!empty($formRequestTypeHint)) {
 
             $class = $route->signatureParameters()[0]->getType();
-            dump($class);
 
             if (null !== $class) {
                 $formRequestClassName = $class->getName();
@@ -72,6 +72,8 @@ class ApiDoc
                     $rules = (new $formRequestClassName)->rules();
                 }
             } catch (ReflectionException $exception) {
+                //
+            } catch (\ErrorException $exception) {
                 //
             }
         }
