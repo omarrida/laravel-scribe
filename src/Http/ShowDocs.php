@@ -8,6 +8,6 @@ class ShowDocs
 {
     public function __invoke()
     {
-        return 'Hello Scribe!';
+        dd('in controller');
     }
 }
