@@ -61,7 +61,9 @@ class ApiDoc
             $class = $route->signatureParameters()[0]->getType();
             dump($class);
 
-            $formRequestClassName = $class->getName();
+            if (null !== $class) {
+                $formRequestClassName = $class->getName();
+            }
 
             try {
                 $reflectionFormRequest = new ReflectionClass($formRequestClassName);
