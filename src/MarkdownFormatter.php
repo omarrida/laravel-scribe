@@ -25,7 +25,7 @@ class MarkdownFormatter
                 ->appendUri($route)
                 ->appendMethod($route)
                 ->appendRules($route)
-                ->appendSuccessResponse($route)
+//                ->appendSuccessResponse($route)
                 ->appendSeparator();
         });
 

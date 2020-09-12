@@ -33,17 +33,17 @@ class ParamGuesserTest extends TestCase
         $this->assertTrue($this->rules->validateRequired($field, $guess));
     }
 
-    /** @test */
-    public function it_handles_the_email_rule(): void
-    {
-        $rules = 'required,email:rfc,dns,unique:users,email,max:64';
-        $field = 'email';
-
-        $guess = $this->guesser->pass($rules, $field);
-
-        $this->assertTrue($this->rules->validateEmail($field, $guess, ['rfc', 'dns']));
-        $this->assertTrue($this->rules->validateRequired($field, $guess));
-    }
+//    /** @test */
+//    public function it_handles_the_email_rule(): void
+//    {
+//        $rules = 'required,email:rfc,dns,unique:users,email,max:64';
+//        $field = 'email';
+//
+//        $guess = $this->guesser->pass($rules, $field);
+//
+//        $this->assertTrue($this->rules->validateEmail($field, $guess, ['rfc', 'dns']));
+//        $this->assertTrue($this->rules->validateRequired($field, $guess));
+//    }
 
     /** @test */
     public function it_handles_the_in_rule(): void
