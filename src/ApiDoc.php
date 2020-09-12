@@ -39,7 +39,8 @@ class ApiDoc
     {
         $routes = collect($router->getRoutes())
             ->reject(function ($route) {
-                return !str_contains(self::getMiddleware($route), 'api')
+                return ! is_string($route)
+                    || !str_contains(self::getMiddleware($route), 'api')
                     || str_contains($route->getName(), 'nova');
             })
             ->map(function ($route) {
