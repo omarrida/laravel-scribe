@@ -17,7 +17,7 @@ class DocumentedRoute
         $this->method = $route['method'];
         $this->uri = $route['uri'];
         $this->rules = $route['rules'];
-        $this->successResponse = $route['success_response'];
+//        $this->successResponse = $route['success_response'];
     }
 
     public function method(): string

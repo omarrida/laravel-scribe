@@ -39,7 +39,7 @@ class ApiDoc
     {
         $routes = collect($router->getRoutes())
             ->reject(function ($route) {
-                return str_contains($route->getName(), 'nova');
+                return str_contains($route->uri, 'nova');
             })
             ->map(function ($route) {
                 return self::getRouteInformation($route);
