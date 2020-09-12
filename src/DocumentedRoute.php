@@ -32,7 +32,15 @@ class DocumentedRoute
 
     public function rules(): array
     {
-        return $this->rules;
+        return collect($this->rules)->map(function ($rule) {
+            if (is_string($rule)) {
+                return $rule;
+            }
+
+            if (is_object($rule)) {
+                return get_class($rule);
+            }
+        })->toArray();
     }
 
     public function successResponse(): ?string
